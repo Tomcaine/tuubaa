@@ -1,2 +1,0 @@
-# tuubaa
-tuubaa's navi

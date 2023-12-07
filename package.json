@@ -1,0 +1,28 @@
+{
+  "name": "tuubaa",
+  "version": "0.0.1",
+  "description": "tuubaa's navi",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "ENV=development ts-node ./src/index.ts",
+    "migrate": "dotenv -e .env.development -- npx prisma migrate dev",
+    "generate": "dotenv -e .env.development -- npx prisma generate",
+    "pull": "dotenv -e .env.development -- npx prisma db pull"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discord-player/extractor": "^4.4.5",
+    "@prisma/client": "^5.7.0",
+    "discord-player": "^6.6.6",
+    "discord.js": "^14.13.0",
+    "prisma": "^5.7.0",
+    "yaml": "^2.3.4",
+    "youtube-ext": "^1.1.16",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.3",
+    "ts-node": "^10.9.1"
+  }
+}
