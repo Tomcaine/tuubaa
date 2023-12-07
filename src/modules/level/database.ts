@@ -16,6 +16,7 @@ async function get(userId: string) {
 }
 
 async function set(userId: string, xp: number, level: number) {
+  console.log(xp)
   return check(await prisma.level.upsert({
     create: {
       user: userId,

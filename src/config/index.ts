@@ -2,8 +2,8 @@
 import fs from 'fs'
 import YAML from 'yaml'
 
-// const file = fs.readFileSync(`src/config/${process.env.NODE_ENV}.yaml`, 'utf-8')
-const file = fs.readFileSync(`src/config/config.yaml`, 'utf-8')
+const file = fs.readFileSync(`src/config/${process.env["ENV"]}.yaml`, 'utf-8')
+// const file = fs.readFileSync(`src/config/config.yaml`, 'utf-8')
 
 
 const data = YAML.parse(file)

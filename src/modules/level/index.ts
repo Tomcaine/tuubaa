@@ -65,11 +65,8 @@ async function onTyping(client: Client) {
 async function addXP(member: GuildMember, amount: number) {
   if (member.user.bot) return
 
-  log("url:", process.env.DATABASE_URL)
-  // return
   const levelData = await Level.database.get(member.id)
 
-  log(levelData)
   if (!levelData) {
     await Level.database.set(member.id, amount, 1)
     return

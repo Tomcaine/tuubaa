@@ -1,6 +1,6 @@
 import { Client, Guild, Role } from "discord.js";
 import config from "../../config/index";
-import { error } from "../error";
+import error from "../error";
 
 
 export let guild: Guild
@@ -24,5 +24,5 @@ function getGuild(client: Client) {
 
 
 export function loadGuild(client: Client) {
-  guild = getGuild(client)
+  guild = getGuild(client)!
 }

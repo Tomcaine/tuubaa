@@ -1,6 +1,6 @@
 import { Client, GuildMember } from "discord.js";
 import config from "../../config/index";
-import { error } from "../error";
+import error from "../error"
 import { log } from "console";
 
 function getUser(id: string, client: Client) {
