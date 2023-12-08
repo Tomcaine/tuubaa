@@ -1,12 +1,13 @@
 import { Client, Guild, Role } from "discord.js";
 import config from "../../config/index";
 import error from "../error";
+import { client } from "../../bot";
 
 
 export let guild: Guild
 
 
-function getGuild(client: Client) {
+function getGuild() {
   if (!client) {
     error.messages.client_is_null()
     return null
@@ -23,6 +24,6 @@ function getGuild(client: Client) {
 }
 
 
-export function loadGuild(client: Client) {
-  guild = getGuild(client)!
+export function loadGuild() {
+  guild = getGuild()!
 }

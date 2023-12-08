@@ -2,8 +2,9 @@ import { Client, GuildMember } from "discord.js";
 import config from "../../config/index";
 import error from "../error"
 import { log } from "console";
+import { client } from "../../bot";
 
-function getUser(id: string, client: Client) {
+function getUser(id: string) {
   if (!client) {
     error.messages.client_is_null()
     return null
@@ -33,10 +34,10 @@ export let users: {
   get: Function
 }
 
-export function loadUser(client: Client) {
+export function loadUser() {
   users = {
     get: getUser,
-    time: getUser(config.users.time, client)!,
-    tuubaa: getUser(config.users.tuubaa, client)!
+    time: getUser(config.users.time)!,
+    tuubaa: getUser(config.users.tuubaa)!
   }
 }

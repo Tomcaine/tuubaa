@@ -4,7 +4,7 @@ import { messages } from "../../lib/get_objects/messages"
 import { embed } from "../../lib/embed"
 import { roles } from "../../lib/get_objects/roles"
 import { delay } from "../../lib/utils"
-import { users } from "../../lib/get_objects/member"
+import { users } from "../../lib/get_objects/users"
 import { Rules } from "."
 
 

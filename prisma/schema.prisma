@@ -9,7 +9,7 @@ datasource db {
 
 model Level {
   user  String @id @unique
-  xp    Int
+  xp    Float
   lvl   Int
   guild String
 }

@@ -1,5 +1,5 @@
 import { ActivityType, Client, Presence, PresenceUpdateStatus, RichPresenceAssets, Status } from "discord.js";
-import { loadUser } from "../../lib/get_objects/member";
+import { loadUser } from "../../lib/get_objects/users";
 import config from "../../config";
 import { log } from "console";
 import { loadChannel } from "../../lib/get_objects/channels";
@@ -28,10 +28,10 @@ async function run(client: Client) {
   await guild.channels.fetch();
   await guild.roles.fetch();
   await guild.members.fetch();
-  loadRole(client);
+  loadRole();
   loadChannel();
-  loadUser(client);
-  loadGuild(client);
+  loadUser();
+  loadGuild();
 
   if (client.user) {
     client.user.setPresence({

@@ -4,7 +4,8 @@ import { check } from "../../lib/utils"
 
 export const LevelDatabase = {
   get,
-  set
+  set,
+  top
 }
 
 async function get(userId: string) {
@@ -16,8 +17,7 @@ async function get(userId: string) {
 }
 
 async function set(userId: string, xp: number, level: number) {
-  console.log(xp)
-  return check(await prisma.level.upsert({
+  return await prisma.level.upsert({
     create: {
       user: userId,
       xp: xp,
@@ -31,5 +31,24 @@ async function set(userId: string, xp: number, level: number) {
     where: {
       user: userId
     }
-  }))
+  })
+}
+
+
+async function top(amount: number) {
+  return await prisma.level.findMany({
+    where: {
+      guild: guild.id
+    },
+    orderBy: [{
+      lvl: 'desc',
+    }, {
+      xp: 'desc'
+    }],
+    skip: amount - 10,
+    take: 10,
+  })
+
+
+
 }

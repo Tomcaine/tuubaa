@@ -1,6 +1,7 @@
 import { Client, Role } from "discord.js";
 import config from "../../config/index";
 import error from "../error";
+import { client } from "../../bot";
 
 
 export let roles: {
@@ -10,7 +11,7 @@ export let roles: {
 }
 
 
-function getRoles(id: string, client: Client) {
+function getRoles(id: string) {
   if (!client) {
     error.messages.client_is_null()
     return null
@@ -34,10 +35,10 @@ function getRoles(id: string, client: Client) {
 }
 
 
-export function loadRole(client: Client) {
+export function loadRole() {
   roles = {
-    banned: getRoles(config.roles.banned, client)!,
-    default: getRoles(config.roles.default, client)!,
+    banned: getRoles(config.roles.banned)!,
+    default: getRoles(config.roles.default)!,
     get: getRoles,
   }
 }

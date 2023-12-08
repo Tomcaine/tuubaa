@@ -1,6 +1,7 @@
 import { useMainPlayer, useQueue } from "discord-player";
 import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, GuildMember } from "discord.js";
 import { embed } from "../../lib/embed";
+import { Commands } from "../../lib/commands";
 
 export const play = {
   data: new SlashCommandBuilder()
@@ -44,7 +45,7 @@ export const play = {
       return interaction.followUp(`Something went wrong: ${e}`);
     }
   }
-}
+} as Commands
 
 export const skip = {
   data: new SlashCommandBuilder()
