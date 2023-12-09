@@ -11,11 +11,18 @@ const data = YAML.parse(file)
 export default {
   roles: {
     default: data.roles.default,
-    13: data.roles['13'],
-    16: data.roles['16'],
-    18: data.roles['18'],
     team: data.roles.team,
     social: data.roles.social,
+    a13: data.roles.a13,
+    a16: data.roles.a16,
+    a18: data.roles.a18,
+    erdbeer: data.roles.erdbeer,
+    bananen: data.roles.bananen,
+    schoko: data.roles.schoko,
+    fortnite: data.roles.fortnite,
+    minecraft: data.roles.minecraft,
+    roblox: data.roles.roblox,
+    valorant: data.roles.valorant,
   },
   guild: data.guild as string,
   users: {

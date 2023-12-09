@@ -28,9 +28,9 @@ const roleMenus: RoleMenu[] = [
     description: 'Wähle dein Alter aus!',
     descriptions: null,
     rolesId: [
-      config.roles[13],
-      config.roles[16],
-      config.roles[18]
+      config.roles.a13,
+      config.roles.a16,
+      config.roles.a18
     ],
     roles: [
       '13-15',
@@ -38,6 +38,40 @@ const roleMenus: RoleMenu[] = [
       'über 18'
     ],
     multi: false
+  },
+  {
+    title: 'Müllermilch',
+    description: 'Wähle deine Lieblings Müllermilch aus!',
+    descriptions: null,
+    rolesId: [
+      config.roles.erdbeer,
+      config.roles.bananen,
+      config.roles.schoko
+    ],
+    roles: [
+      'Erdbeer Müllermilch',
+      'Bananen Müllermilch',
+      'Schoko Müllermilch'
+    ],
+    multi: false
+  },
+  {
+    title: 'Spiele',
+    description: 'Wähle deine Spiele aus!',
+    descriptions: null,
+    rolesId: [
+      config.roles.minecraft,
+      config.roles.roblox,
+      config.roles.valorant,
+      config.roles.fortnite
+    ],
+    roles: [
+      'Minecraft',
+      'Roblox',
+      'Valorant',
+      'Fortnite'
+    ],
+    multi: true
   }
 ]
 
@@ -66,7 +100,6 @@ async function roleSelectHandler() {
 
     member.roles.add(role)
 
-    log(member.roles.cache.map(role => role.name))
     await interaction.deferUpdate()
     // await interaction.reply({ content: `Du hast die Rolle ${'s'} erhalten!`, ephemeral: true })
   })
@@ -74,11 +107,6 @@ async function roleSelectHandler() {
 
 
 async function sendRoleSelect(roleMenu: RoleMenu, channel: TextBasedChannel) {
-
-
-
-
-
   const embed = new EmbedBuilder()
     .setTitle(roleMenu.title)
     .setDescription(roleMenu.description)
@@ -99,7 +127,7 @@ async function sendRoleSelect(roleMenu: RoleMenu, channel: TextBasedChannel) {
         .addOptions(
           ...options
         )
-        .setMaxValues(roleMenu.multi ? 10 : 1)
+        .setMaxValues(roleMenu.multi ? roleMenu.roles.length : 1)
     );
 
   await channel.send({ embeds: [embed], components: [menu] })
