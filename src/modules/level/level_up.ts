@@ -1,9 +1,11 @@
 // Level System
 
-import { EmbedBuilder, GuildMember } from "discord.js";
+import { Colors, EmbedBuilder, GuildMember } from "discord.js";
 import { channels } from "../../lib/get_objects/channels";
 import { guild } from "../../lib/get_objects/guild";
 import { Level } from ".";
+import { embed } from "../../lib/embed";
+import { log } from "console";
 
 
 
@@ -16,7 +18,7 @@ export const LevelUp = {
 async function addXP(member: GuildMember, amount: number) {
   if (member.user.bot) return
 
-  // return
+  // console.log(amount)
   const levelData = await Level.database.get(member.id)
 
   if (!levelData) {
@@ -27,10 +29,18 @@ async function addXP(member: GuildMember, amount: number) {
   let level = levelData.lvl
   const xp = fix(levelData.xp + amount)
 
-  const threshold = fix(level ** 2 * 10)
+  const threshold = fix(level ** 2 * 15)
 
 
   if (xp < threshold) {
+    await channels.bot.send({
+      embeds: [
+        new EmbedBuilder()
+          .setColor(Colors.Green)
+          .setTitle('Level Aufstieg!')
+          .setDescription(`${member}. Du hast deine erste Nachricht geschrieben! Du bist nun \n**Level: ${level}**`)
+      ]
+    })
     await Level.database.set(member.id, xp, level)
     return
   }
@@ -48,12 +58,14 @@ function fix(number: number) {
 function levelUpEmebd(member: GuildMember, level: number) {
   return new EmbedBuilder()
     .setTitle('Level Aufstieg!')
+    .setColor(Colors.Green)
     .setDescription(`${member} hat das nächste Level erreicht!\n**Level: ${level}**`)
     .setFooter({
       text: member.displayName,
       iconURL: member.displayAvatarURL()
     })
-    .setImage(guild.iconURL())
+  // .setImage(guild.iconURL())
+  // .setThumbnail(guild.iconURL())
 }
 
 async function levelUp(member: GuildMember, level: number) {

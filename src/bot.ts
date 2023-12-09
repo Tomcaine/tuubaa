@@ -19,7 +19,7 @@ export default {
 }
 
 async function run() {
-	client.login(process.env['TOKENs']);
+	client.login(process.env['TOKEN']);
 	Modules.commmands(client)
 	Modules.error(client)
 	client.once(Events.ClientReady, Modules.register)

@@ -19,3 +19,21 @@ model Rules {
   channel String
   guild   String @unique
 }
+
+model RoleExplain {
+  id    String @id @unique
+  guild String @unique
+}
+
+model ticket {
+  id     String  @id
+  user   String
+  claim  String?
+  opened String
+  closed String?
+}
+
+model YouTube {
+  id String @id
+  // posts String[] @unique
+}

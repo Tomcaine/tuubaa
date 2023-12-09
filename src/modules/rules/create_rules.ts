@@ -21,13 +21,16 @@ export const createRule = {
     const oldRuleMessage = await Rules.database.get();
 
 
-    const channel = channels.get(oldRuleMessage?.channel || "");
+    if (oldRuleMessage?.channel) {
+      const channel = channels.get(oldRuleMessage?.channel || "");
 
 
-    if (oldRuleMessage && channel) {
-      const message = await messages.fetch(oldRuleMessage.message, channel);
-      if (message) {
-        await message.delete();
+
+      if (oldRuleMessage && channel) {
+        const message = await messages.fetch(oldRuleMessage.message, channel);
+        if (message) {
+          await message.delete();
+        }
       }
     }
 

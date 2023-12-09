@@ -7,7 +7,7 @@ import { LevelCommands } from "./commands"
 
 export default {
   run,
-  commands: [LevelCommands.showTop]
+  commands: [...LevelCommands.commmands]
 } as Modules
 
 

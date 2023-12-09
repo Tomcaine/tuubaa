@@ -6,8 +6,9 @@ import { client } from "../../bot";
 
 export let roles: {
   default: Role,
-  banned: Role,
-  get: Function
+  team: Role,
+  social: Role,
+  get: typeof getRoles
 }
 
 
@@ -37,7 +38,8 @@ function getRoles(id: string) {
 
 export function loadRole() {
   roles = {
-    banned: getRoles(config.roles.banned)!,
+    social: getRoles(config.roles.social)!,
+    team: getRoles(config.roles.team)!,
     default: getRoles(config.roles.default)!,
     get: getRoles,
   }

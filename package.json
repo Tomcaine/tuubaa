@@ -5,23 +5,35 @@
   "main": "src/index.ts",
   "scripts": {
     "dev": "ENV=development ts-node ./src/index.ts",
+    "start": "ENV=production ts-node ./src/index.ts",
     "db:migrate": "dotenv -e .env.development -- npx prisma migrate dev",
     "db:generate": "dotenv -e .env.development -- npx prisma generate",
     "db:pull": "dotenv -e .env.development -- npx prisma db pull",
     "db:push": "dotenv -e .env.development -- npx prisma db push",
-    "slash": "ENV=development ts-node ./src/deploy-commands.ts"
+    "slash": "ENV=development ts-node ./src/deploy-commands.ts",
+    "slash:prod": "ENV=production ts-node ./src/deploy-commands.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@googleapis/youtube": "^9.0.0",
     "@discord-player/extractor": "^4.4.5",
     "@prisma/client": "^5.7.0",
+    "@types/gm": "^1.25.1",
+    "@jimp/plugin-circle": "^0.22.8",
+    "@types/imagemagick": "^0.0.31",
+    "axios": "^1.4.0",
     "discord-player": "^6.6.6",
+    "mediaplex": "^0.0.9",
+    "googleapis": "^118.0.0",
     "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
+    "gm": "^1.25.0",
+    "imagemagick": "^0.1.3",
+    "jimp": "^0.22.10",
     "prisma": "^5.7.0",
     "yaml": "^2.3.4",
-    "youtube-ext": "^1.1.16",
-    "dotenv": "^16.3.1"
+    "youtube-ext": "^1.1.16"
   },
   "devDependencies": {
     "@types/node": "^20.10.3",

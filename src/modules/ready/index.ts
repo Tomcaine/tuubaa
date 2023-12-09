@@ -1,9 +1,9 @@
-import { ActivityType, Client, Presence, PresenceUpdateStatus, RichPresenceAssets, Status } from "discord.js";
+import { ActivityType, Client, Presence, PresenceUpdateStatus, RichPresenceAssets, Status, TextChannel } from "discord.js";
 import { loadUser } from "../../lib/get_objects/users";
 import config from "../../config";
 import { log } from "console";
-import { loadChannel } from "../../lib/get_objects/channels";
-import { loadGuild } from "../../lib/get_objects/guild";
+import { channels, loadChannel } from "../../lib/get_objects/channels";
+import { guild, loadGuild } from "../../lib/get_objects/guild";
 import { loadRole } from "../../lib/get_objects/roles";
 import error from "../../lib/error";
 // import { roles } from "../../lib/roles";
@@ -36,14 +36,22 @@ async function run(client: Client) {
   if (client.user) {
     client.user.setPresence({
       activities: [{
-        name: "Schaut",
+        name: "tuubaa",
         type: ActivityType.Watching,
         url: "http://tuubaa.de/"
       }],
-      status: PresenceUpdateStatus.Invisible
+      status: 'online'
     });
   }
 
+  const channel = channels.memberCount
+
+  let memberCount = 0;
+
+  setInterval(async () => {
+    // info(">> Checking for new Members");
+    updateMemberCount(channel, memberCount);
+  }, 6 * 60 * 1000);
 
   // if (!guild) {
   //   throw (`guild could be loaded via client with this id: ${config.guild}`)
@@ -51,4 +59,26 @@ async function run(client: Client) {
 
   // log("Loading data into client cache!")
 
+}
+
+
+async function updateMemberCount(channel: TextChannel, memberCount: number) {
+  let member = null;
+
+  try {
+    member = (await guild.members.fetch()).size;
+  } catch (err: any) {
+    log(err);
+    return;
+  }
+  if (memberCount === member) return;
+
+  if (!channel) {
+    log("Member Count Channel existert irgendwie nicht!");
+    return;
+  }
+
+  await channel.setName("👥 Kinder: " + member);
+
+  memberCount = member;
 }

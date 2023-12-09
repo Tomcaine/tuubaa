@@ -1,5 +1,5 @@
 import { useMainPlayer, useQueue } from "discord-player";
-import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, GuildMember } from "discord.js";
+import { SlashCommandBuilder, ChatInputCommandInteraction, CacheType, GuildMember, EmbedBuilder, Colors } from "discord.js";
 import { embed } from "../../lib/embed";
 import { Commands } from "../../lib/commands";
 
@@ -22,27 +22,30 @@ export const play = {
     }
 
     const channel = interaction.member.voice.channel;
-    if (!channel) return interaction.reply('You are not connected to a voice channel!'); // make sure we have a voice channel
-    const query = interaction.options.getString('search', true); // we need input/query to play
+    if (!channel) return interaction.reply('Du bist nicht mit einem Voice Channel verbunden!');
+    const query = interaction.options.getString('search', true);
 
-    // let's defer the interaction as things can take time to process
     await interaction.deferReply();
 
     try {
       const { track } = await player.play(channel, query, {
-        // searchEngine: "YOUTUBE_SEARCH",
 
         nodeOptions: {
-          volume: 10,
-          // nodeOptions are the options for guild node (aka your queue in simple word)
-          metadata: interaction // we can access this metadata object using queue.metadata later on
+          volume: 5,
+          metadata: interaction
         }
       });
 
-      return interaction.followUp(`**${track.title}** enqueued!`);
+      const embed = new EmbedBuilder()
+        .setTitle("Music")
+        .setColor(Colors.Blurple)
+        .setDescription(`Es wird: **${track.title}** *(${track.raw.source})* gespielt!`)
+
+
+      await interaction.editReply({ embeds: [embed] });
+
     } catch (e) {
-      // let's return error if something failed
-      return interaction.followUp(`Something went wrong: ${e}`);
+      console.error(e)
     }
   }
 } as Commands
