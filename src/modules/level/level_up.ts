@@ -23,6 +23,14 @@ async function addXP(member: GuildMember, amount: number) {
 
   if (!levelData) {
     await Level.database.set(member.id, amount, 1)
+    await channels.bot.send({
+      embeds: [
+        new EmbedBuilder()
+          .setColor(Colors.Green)
+          .setTitle('Level Aufstieg!')
+          .setDescription(`${member}. Du hast deine erste Nachricht geschrieben! Du bist nun \n**Level: 1**`)
+      ]
+    })
     return
   }
 
@@ -33,14 +41,6 @@ async function addXP(member: GuildMember, amount: number) {
 
 
   if (xp < threshold) {
-    await channels.bot.send({
-      embeds: [
-        new EmbedBuilder()
-          .setColor(Colors.Green)
-          .setTitle('Level Aufstieg!')
-          .setDescription(`${member}. Du hast deine erste Nachricht geschrieben! Du bist nun \n**Level: ${level}**`)
-      ]
-    })
     await Level.database.set(member.id, xp, level)
     return
   }
