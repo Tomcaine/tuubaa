@@ -4,6 +4,7 @@ import { Level } from "."
 import { guild } from "../../lib/get_objects/guild"
 import { users } from "../../lib/get_objects/users"
 import { client } from "../../bot"
+import { log } from "console"
 
 const showLvl = {
   data: new SlashCommandBuilder()
@@ -86,6 +87,8 @@ async function handleButton() {
     if (type !== 'top') return
 
     const newAmount = parseInt(amount) + (action === 'next' ? 10 : -10)
+
+    log(newAmount)
 
     const top = await Level.database.top(newAmount)
 

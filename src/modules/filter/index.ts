@@ -1,5 +1,5 @@
-import { info } from "console";
-import { Client } from "discord.js";
+import { info, log } from "console";
+import { Client, Events } from "discord.js";
 import { Modules } from "../../handler";
 import { channels } from "../../lib/get_objects/channels";
 import { users } from "../../lib/get_objects/users";
@@ -13,6 +13,7 @@ export default {
 
 function run(client: Client) {
   info(">> Filter");
+
 
   client.on("messageCreate", async (message) => {
     if (message.author.bot) return;

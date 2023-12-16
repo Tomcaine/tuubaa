@@ -37,3 +37,10 @@ model YouTube {
   id String @id
   // posts String[] @unique
 }
+
+model Voice {
+  id    String  @id
+  owner String
+  guild String
+  lock  Boolean
+}

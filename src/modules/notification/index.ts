@@ -14,9 +14,10 @@ export default {
 async function run(client: Client) {
   info(">> Notification Module loaded");
   // Check if new Videos
+  // log(">> Checking for new Videos");
+  youtube();
   setInterval(() => {
-    // info(">> Checking for new Videos");
-    youtube();
+    info(">> Checking for new Videos");
     twitch();
   }, 30 * 1000);
 };

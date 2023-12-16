@@ -28,7 +28,7 @@ async function addXP(member: GuildMember, amount: number) {
         new EmbedBuilder()
           .setColor(Colors.Green)
           .setTitle('Level Aufstieg!')
-          .setDescription(`${member}. Du hast deine erste Nachricht geschrieben! Du bist nun \n**Level: 1**`)
+          .setDescription(`${member}. Du hast deine erste Nachricht geschrieben!\nDu bist nun \n**Level: 1**`)
       ]
     })
     return
