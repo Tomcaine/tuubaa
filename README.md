@@ -1,6 +1,6 @@
 # tuubaa's navi
 
-Das ist der Discord Bot für den [tuubaa Discord Server](discord.gg/tuubaa).
+Das ist der Discord Bot für den [tuubaa Discord Server](https://discord.gg/tuubaa).
 
 # Features
 - ticket
