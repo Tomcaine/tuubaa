@@ -39,5 +39,12 @@ export default {
     log: data.channels.log,
     roleExplain: data.channels.roleExplain,
     notification: data.channels.notification,
+  },
+  level: {
+    xpPerLevel: data.level.xp_per_level,
+    multiplikator: data.level.multiplikator,
+    exponent: data.level.exponent,
+    cooldownTime: data.level.cooldownTime,
   }
 }
+
