@@ -41,7 +41,7 @@ export default {
     notification: data.channels.notification,
   },
   level: {
-    xpPerLevel: data.level.xp_per_level,
+    xpPerLevel: data.level.xpPerLevel,
     multiplikator: data.level.multiplikator,
     exponent: data.level.exponent,
     cooldownTime: data.level.cooldownTime,

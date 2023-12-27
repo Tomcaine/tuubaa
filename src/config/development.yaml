@@ -26,3 +26,9 @@ channels:
   log: "1179844880579694602"
   roleExplain: "1183116917620363295"
   notification: "1183116917620363295"
+
+level:
+  xpPerLevel: 1
+  multiplikator: 15
+  exponent: 2
+  cooldownTime: 0
