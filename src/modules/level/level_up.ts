@@ -6,6 +6,7 @@ import { guild } from "../../lib/get_objects/guild";
 import { Level } from ".";
 import { embed } from "../../lib/embed";
 import { log } from "console";
+import config from "../../config";
 
 
 
@@ -37,7 +38,7 @@ async function addXP(member: GuildMember, amount: number) {
   let level = levelData.lvl
   const xp = fix(levelData.xp + amount)
 
-  const threshold = fix(level ** 2 * 15)
+  const threshold = fix(level ** config.level.exponent * config.level.multiplikator)
 
 
   if (xp < threshold) {

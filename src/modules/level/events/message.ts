@@ -1,6 +1,7 @@
 import { Client, Events, Message } from "discord.js";
 import { Level } from "..";
 import { setInterval, setTimeout } from "timers/promises";
+import config from "../../../config";
 
 let cooldown = new Set()
 
@@ -20,11 +21,11 @@ async function onTyping(client: Client) {
     cooldown.add(message.author.id);
 
     if (message.member) {
-      await Level.levelUp.xp(message.member, 1);
+      await Level.levelUp.xp(message.member, config.level.xpPerLevel);
     }
 
     // Cooldown to prevent spamming!
-    await setTimeout(3000);
+    await setTimeout(config.level.cooldownTime);
     cooldown.delete(message.author.id);
   });
 
