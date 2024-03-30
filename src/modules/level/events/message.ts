@@ -4,6 +4,7 @@ import { setInterval, setTimeout } from "timers/promises";
 import config from "../../../config";
 
 let cooldown = new Set()
+let lastUser = ""
 
 export const LevelEvents = {
   onTyping,
@@ -14,6 +15,11 @@ async function onTyping(client: Client) {
   client.on(Events.MessageCreate, async (message: Message<boolean>) => {
     if (message.author.bot) return;
 
+  
+    if (lastUser == message.author.id) return;
+
+    lastUser = message.author.id;
+    
     if (cooldown.has(message.author.id)) {
       return
     }
